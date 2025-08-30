@@ -1,7 +1,6 @@
-# myfirstproject
-# Simple To-Do List Console App
+# Simple To-Do List App 
 
-tasks = []  # to store all tasks
+tasks = []
 
 def show_tasks():
     if not tasks:
@@ -19,21 +18,23 @@ def add_task():
 
 def mark_done():
     show_tasks()
-    try:
-        num = int(input("Enter task number to mark as complete: "))
-        tasks[num - 1]["done"] = True
-        print(f"✔ Task '{tasks[num - 1]['title']}' marked complete!")
-    except (ValueError, IndexError):
-        print("⚠ Invalid choice!")
+    if tasks:
+        try:
+            num = int(input("Enter task number to mark as complete: "))
+            tasks[num - 1]["done"] = True
+            print(f"✔ Task '{tasks[num - 1]['title']}' marked complete!")
+        except (ValueError, IndexError):
+            print("⚠ Invalid choice!")
 
 def remove_task():
     show_tasks()
-    try:
-        num = int(input("Enter task number to remove: "))
-        removed = tasks.pop(num - 1)
-        print(f"🗑 Task '{removed['title']}' removed!")
-    except (ValueError, IndexError):
-        print("⚠ Invalid choice!")
+    if tasks:
+        try:
+            num = int(input("Enter task number to remove: "))
+            removed = tasks.pop(num - 1)
+            print(f"🗑 Task '{removed['title']}' removed!")
+        except (ValueError, IndexError):
+            print("⚠ Invalid choice!")
 
 # Main loop
 while True:
@@ -43,6 +44,8 @@ while True:
     print("3. Mark Task as Complete")
     print("4. Remove Task")
     print("5. Exit")
+
+    choice = input("Choose an option (1-5): ")
 
     if choice == "1":
         show_tasks()
@@ -57,5 +60,4 @@ while True:
         break
     else:
         print("⚠ Invalid option, try again.")
-    else:
-        print("⚠ Invalid option, try again.")
+
